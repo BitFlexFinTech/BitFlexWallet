@@ -1,0 +1,273 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <include layout="@layout/layout_simple_toolbar" />
+
+    <com.alphawallet.app.widget.FunctionButtonBar
+        android:layout_alignParentBottom="true"
+        android:id="@+id/layoutButtons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@id/layoutButtons"
+        android:layout_marginTop="?actionBarSize"
+        android:background="@drawable/background_card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/value_header"
+                    style="@style/TransactionDetailsSubTitleStyle"
+                    android:layout_alignParentTop="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp16"
+                    android:text="@string/value" />
+
+                <TextView
+                    android:id="@+id/text_chain_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/background_status_pending"
+                    android:fontFamily="@font/font_bold"
+                    android:padding="2dp"
+                    android:text="@string/action_clear"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_below="@id/value_header"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_operation_name"
+                        style="@style/TransactionDetailsStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp16"
+                        tools:text="Sent"  />
+
+                    <TextView
+                        android:id="@+id/amount"
+                        style="@style/TransactionDetailsStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="4238793"  />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                style="@style/TransactionDetailsSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp16"
+                android:text="@string/subtitle_transaction_hash_num" />
+
+            <com.alphawallet.app.widget.CopyTextView
+                android:id="@+id/txn_hash"
+                style="@style/TransactionDetailsCopyTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:gravity="start"
+                app:bold="false"
+                app:textColor="@color/mine"
+                app:marginRight="@dimen/dp18" />
+
+            <TextView
+                style="@style/TransactionDetailsSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_network" />
+
+            <TextView
+                android:id="@+id/network"
+                style="@style/TransactionDetailsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_coin_eth_small"
+                android:drawablePadding="@dimen/dp5"
+                android:text="@string/ethereum" />
+
+            <TextView
+                style="@style/TransactionDetailsSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_from" />
+
+            <com.alphawallet.app.widget.CopyTextView
+                android:id="@+id/from"
+                style="@style/TransactionDetailsCopyTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:gravity="start"
+                app:bold="false"
+                app:textColor="@color/mine"
+                app:marginRight="@dimen/dp18" />
+
+            <TextView
+                style="@style/TransactionDetailsSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_to" />
+
+            <com.alphawallet.app.widget.CopyTextView
+                android:id="@+id/to"
+                style="@style/TransactionDetailsCopyTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:gravity="start"
+                app:bold="false"
+                app:textColor="@color/mine"
+                app:marginRight="@dimen/dp18" />
+
+            <TextView
+                style="@style/TransactionDetailsSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_block" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/pending_spinner"
+                    android:layout_width="@dimen/dp14"
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="@dimen/dp14"
+                    android:layout_marginEnd="6dp"
+                    android:contentDescription="@string/empty"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/block_number"
+                    style="@style/TransactionDetailsStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="4238793" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/layout_gas_fee"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TransactionDetailsSubTitleStyle"
+                        android:id="@+id/title_gas_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_gas_fee" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/gas_fee"
+                            style="@style/TransactionDetailsStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="4.2" />
+
+                        <TextView
+                            style="@style/TransactionDetailsStyle"
+                            android:layout_marginStart="@dimen/dp5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/eth" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_gas_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TransactionDetailsSubTitleStyle"
+                        android:id="@+id/title_gas_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtitle_gas_price" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/gas_price"
+                            style="@style/TransactionDetailsStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="1.2" />
+
+                        <TextView
+                            style="@style/TransactionDetailsStyle"
+                            android:layout_marginStart="@dimen/dp5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gwei" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/TransactionDetailsSubTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_transaction_time" />
+
+            <TextView
+                android:id="@+id/txn_time"
+                style="@style/TransactionDetailsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="September 4, 2017 at 2:32:12 PM" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
