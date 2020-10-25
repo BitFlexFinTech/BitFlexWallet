@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_semibold"
                 android:text="@string/wallet_label"
-                android:textColor="@color/dove"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_semibold"
                 android:text="@string/activity_label"
-                android:textColor="@color/dove"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_semibold"
                 android:text="@string/browser_label"
-                android:textColor="@color/dove"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -114,7 +114,7 @@
                 android:fontFamily="@font/font_semibold"
                 android:lineSpacingExtra="8sp"
                 android:text="@string/settings_label"
-                android:textColor="@color/dove"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
             <LinearLayout

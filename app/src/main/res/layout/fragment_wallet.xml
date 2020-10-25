@@ -38,7 +38,7 @@
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/colorHighlight"
             app:tabTextAppearance="@style/WalletTabTextAppearance"
-            app:tabTextColor="@color/dove" />
+            app:tabTextColor="@color/white" />
 
         <View
             android:layout_width="match_parent"

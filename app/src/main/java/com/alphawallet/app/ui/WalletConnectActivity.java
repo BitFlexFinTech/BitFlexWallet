@@ -64,8 +64,7 @@ import wallet.core.jni.Hash;
 
 import static com.alphawallet.app.repository.EthereumNetworkBase.MAINNET_ID;
 
-public class WalletConnectActivity extends BaseActivity
-{
+public class WalletConnectActivity extends BaseActivity {
     private static final String TAG = "WCClient";
     public static final String WC_LOCAL_PREFIX = "wclocal:";
     public static final String WC_INTENT = "wcintent:";
@@ -91,7 +90,7 @@ public class WalletConnectActivity extends BaseActivity
     private FunctionButtonBar functionBar;
     private boolean fromDappBrowser = false;  //if using this from dappBrowser (which is a bit strange but could happen) then return back to browser once signed
     private boolean fromPhoneBrowser = false; //if from phone browser, clicking 'back' should take user back to dapp running on the phone's browser,
-                                              // -- according to WalletConnect's expected UX docs.
+    // -- according to WalletConnect's expected UX docs.
     private boolean fromSessionActivity = false;
 
     private Signable signable;
@@ -111,8 +110,7 @@ public class WalletConnectActivity extends BaseActivity
     private Disposable messageCheck;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         AndroidInjection.inject(this);
@@ -135,25 +133,20 @@ public class WalletConnectActivity extends BaseActivity
     }
 
     @Override
-    protected void onNewIntent(Intent intent)
-    {
+    protected void onNewIntent(Intent intent) {
         Bundle data = intent.getExtras();
-        if (data != null)
-        {
+        if (data != null) {
             String sessionId = getSessionId();
             parseSessionCode(data.getString("qrCode"));
             String newSessionId = getSessionId();
             Log.d(TAG, "Received New Intent: " + newSessionId + " (" + sessionId + ")");
             client = viewModel.getClient(newSessionId);
 
-            if (client == null || !client.isConnected())
-            {
+            if (client == null || !client.isConnected()) {
                 //TODO: ERROR!
                 showErrorDialogTerminate(getString(R.string.session_terminated));
                 infoLayout.setVisibility(View.GONE);
-            }
-            else
-            {
+            } else {
                 //setup the screen
                 Log.d(TAG, "Resume Connection session: " + newSessionId);
                 displaySessionStatus(newSessionId);
@@ -161,37 +154,28 @@ public class WalletConnectActivity extends BaseActivity
         }
     }
 
-    private void retrieveQrCode()
-    {
+    private void retrieveQrCode() {
         Bundle data = getIntent().getExtras();
-        if (data != null)
-        {
+        if (data != null) {
             String qrCode = data.getString("qrCode");
             String sessionId = data.getString("session");
             if (sessionId != null) fromSessionActivity = true;
-            if (!TextUtils.isEmpty(qrCode))
-            {
+            if (!TextUtils.isEmpty(qrCode)) {
                 parseSessionCode(data.getString("qrCode"));
-            }
-            else if (!TextUtils.isEmpty(sessionId))
-            {
+            } else if (!TextUtils.isEmpty(sessionId)) {
                 session = viewModel.getSession(sessionId);
             }
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, "Error retrieving QR code", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
 
-    private void parseSessionCode(String wcCode)
-    {
+    private void parseSessionCode(String wcCode) {
         if (wcCode != null && wcCode.startsWith(WC_LOCAL_PREFIX)) {
             wcCode = wcCode.replace(WC_LOCAL_PREFIX, "");
             fromDappBrowser = true;
-        }
-        else if (wcCode != null && wcCode.startsWith(WC_INTENT)) {
+        } else if (wcCode != null && wcCode.startsWith(WC_INTENT)) {
             wcCode = wcCode.replace(WC_INTENT, "");
             fromPhoneBrowser = true; //don't use this yet, but could use it for switching between apps
         }
@@ -200,16 +184,14 @@ public class WalletConnectActivity extends BaseActivity
         System.out.println("WCClient: " + qrCode);
     }
 
-    private void initViewModel()
-    {
+    private void initViewModel() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(WalletConnectViewModel.class);
 
         viewModel.defaultWallet().observe(this, this::onDefaultWallet);
     }
 
-    private void initViews()
-    {
+    private void initViews() {
         progressBar = findViewById(R.id.progress);
         infoLayout = findViewById(R.id.layout_info);
         icon = findViewById(R.id.icon);
@@ -226,8 +208,7 @@ public class WalletConnectActivity extends BaseActivity
     }
 
     //TODO: Refactor this into elements - this function is unmaintainable
-    private void onDefaultWallet(Wallet wallet)
-    {
+    private void onDefaultWallet(Wallet wallet) {
         this.wallet = wallet;
         address.setText(wallet.address);
 
@@ -236,16 +217,14 @@ public class WalletConnectActivity extends BaseActivity
         String peerId;
         String sessionId = getSessionId();
         String connectionId = viewModel.getRemotePeerId(sessionId);
-        if (!TextUtils.isEmpty(wallet.address))
-        {
+        if (!TextUtils.isEmpty(wallet.address)) {
             if (connectionId == null && session != null) //new session request
             {
                 Log.d(TAG, "New Session: " + getSessionId());
                 //new connection, create a random ID to identify us to the remotePeer.
                 peerId = UUID.randomUUID().toString(); //Create a new ID for our side of this session. The remote peer uses this ID to identify us
                 connectionId = null; //connectionId is only relevant for resuming a session
-            }
-            else //existing session, rebuild the session data
+            } else //existing session, rebuild the session data
             {
                 client = viewModel.getClient(sessionId);
                 Log.d(TAG, "Resume Session: " + getSessionId());
@@ -254,19 +233,13 @@ public class WalletConnectActivity extends BaseActivity
                 peerId = viewModel.getPeerId(sessionId);
                 displaySessionStatus(sessionId);
 
-                if (client != null && client.isConnected())
-                {
+                if (client != null && client.isConnected()) {
                     Log.d(TAG, "Use running session: " + getSessionId());
-                }
-                else
-                {
-                    if (!fromSessionActivity && (session == null || client == null))
-                    {
+                } else {
+                    if (!fromSessionActivity && (session == null || client == null)) {
                         showErrorDialogTerminate(getString(R.string.session_terminated));
                         infoLayout.setVisibility(View.GONE);
-                    }
-                    else
-                    {
+                    } else {
                         //session is not current, no need to display the 'end session' button
                         functionBar.setVisibility(View.GONE);
                     }
@@ -287,26 +260,21 @@ public class WalletConnectActivity extends BaseActivity
         startup = false;
     }
 
-    private void startMessageCheck()
-    {
+    private void startMessageCheck() {
         if (messageCheck != null && !messageCheck.isDisposed()) messageCheck.dispose();
 
         messageCheck = Observable.interval(0, 500, TimeUnit.MILLISECONDS)
                 .doOnNext(l -> checkMessages()).subscribe();
     }
 
-    private void stopMessageCheck()
-    {
+    private void stopMessageCheck() {
         if (messageCheck != null && !messageCheck.isDisposed()) messageCheck.dispose();
     }
 
-    private void checkMessages()
-    {
+    private void checkMessages() {
         WCRequest rq = viewModel.getPendingRequest(getSessionId());
-        if (rq != null)
-        {
-            switch (rq.type)
-            {
+        if (rq != null) {
+            switch (rq.type) {
                 case MESSAGE:
                     runOnUiThread(() -> {
                         onEthSign(rq.id, rq.sign);
@@ -337,27 +305,19 @@ public class WalletConnectActivity extends BaseActivity
         }
     }
 
-    private String getSessionId()
-    {
-        if (qrCode != null)
-        {
+    private String getSessionId() {
+        if (qrCode != null) {
             String uriString = qrCode.replace("wc:", "wc://");
             return Uri.parse(uriString).getUserInfo();
-        }
-        else if (session != null)
-        {
+        } else if (session != null) {
             return session.getTopic();
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-    private void initWalletConnectSession(String sessionId, String connectionId)
-    {
-        if (session == null)
-        {
+    private void initWalletConnectSession(String sessionId, String connectionId) {
+        if (session == null) {
             //error situation!
             invalidSession();
             return;
@@ -367,8 +327,7 @@ public class WalletConnectActivity extends BaseActivity
         client.connect(session, peerMeta, sessionId, connectionId);
     }
 
-    private void invalidSession()
-    {
+    private void invalidSession() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle(R.string.invalid_walletconnect_session)
                 .setMessage(R.string.restart_walletconnect_session)
@@ -378,8 +337,7 @@ public class WalletConnectActivity extends BaseActivity
         dialog.show();
     }
 
-    private void initWalletConnectPeerMeta()
-    {
+    private void initWalletConnectPeerMeta() {
         String name = getString(R.string.app_name);
         String url = "https://www.alphawallet.com";
         String description = wallet.address;
@@ -393,8 +351,7 @@ public class WalletConnectActivity extends BaseActivity
         );
     }
 
-    private void initWalletConnectClient()
-    {
+    private void initWalletConnectClient() {
         httpClient = new OkHttpClient.Builder()
                 .connectTimeout(7, TimeUnit.SECONDS)
                 .readTimeout(7, TimeUnit.SECONDS)
@@ -412,8 +369,7 @@ public class WalletConnectActivity extends BaseActivity
         client.setOnDisconnect((code, reason) -> {
             Log.d(TAG, "Terminate session?");
             if (viewModel != null) viewModel.pruneSession(client.sessionId());
-            if (terminateSession)
-            {
+            if (terminateSession) {
                 Log.d(TAG, "Yes");
                 finish();
             }
@@ -422,21 +378,18 @@ public class WalletConnectActivity extends BaseActivity
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
         startMessageCheck();
     }
 
-    private void displaySessionStatus(String sessionId)
-    {
+    private void displaySessionStatus(String sessionId) {
         progressBar.setVisibility(View.GONE);
         functionBar.setVisibility(View.VISIBLE);
         infoLayout.setVisibility(View.VISIBLE);
         WCPeerMeta remotePeerData = viewModel.getRemotePeer(sessionId);
 
-        if (remotePeerData != null)
-        {
+        if (remotePeerData != null) {
             Glide.with(this)
                     .load(remotePeerData.getIcons().get(0))
                     .into(icon);
@@ -446,13 +399,11 @@ public class WalletConnectActivity extends BaseActivity
         }
     }
 
-    private void updateSignCount()
-    {
+    private void updateSignCount() {
         ArrayList<SignRecord> recordList = viewModel.getSignRecords(getSessionId());
         signCount.setText(String.valueOf(recordList.size()));
 
-        if (recordList.size() > 0)
-        {
+        if (recordList.size() > 0) {
             LinearLayout signLayout = findViewById(R.id.layout_sign);
             signLayout.setOnClickListener(v -> {
                 //switch to view of signs
@@ -464,8 +415,7 @@ public class WalletConnectActivity extends BaseActivity
         }
     }
 
-    private void onSessionRequest(Long id, WCPeerMeta peer)
-    {
+    private void onSessionRequest(Long id, WCPeerMeta peer) {
         String[] accounts = {wallet.address};
 
         Glide.with(this)
@@ -486,8 +436,7 @@ public class WalletConnectActivity extends BaseActivity
                     progressBar.setVisibility(View.GONE);
                     functionBar.setVisibility(View.VISIBLE);
                     infoLayout.setVisibility(View.VISIBLE);
-                    if (fromDappBrowser)
-                    {
+                    if (fromDappBrowser) {
                         //switch back to dappBrowser
                         switchToDappBrowser();
                     }
@@ -501,13 +450,11 @@ public class WalletConnectActivity extends BaseActivity
         dialog.show();
     }
 
-    private void onEthSign(Long id, WCEthereumSignMessage message)
-    {
+    private void onEthSign(Long id, WCEthereumSignMessage message) {
         int signType = 0;
         signable = null;
         lastId = id;
-        switch (message.getType())
-        {
+        switch (message.getType()) {
             case MESSAGE:
                 signType = R.string.dialog_title_sign_message;
                 signable = new EthereumMessage(message.getData(), peerUrl.getText().toString(), id);
@@ -519,26 +466,20 @@ public class WalletConnectActivity extends BaseActivity
             case TYPED_MESSAGE:
                 signType = R.string.dialog_title_sign_typed_message;
                 //See TODO in SignCallbackJSInterface, refactor duplicate code
-                try
-                {
-                    try
-                    {
+                try {
+                    try {
                         ProviderTypedData[] rawData = new Gson().fromJson(message.getData(), ProviderTypedData[].class);
                         ByteArrayOutputStream writeBuffer = new ByteArrayOutputStream();
                         writeBuffer.write(Hash.keccak256(MessageUtils.encodeParams(rawData)));
                         writeBuffer.write(Hash.keccak256(MessageUtils.encodeValues(rawData)));
                         CharSequence signMessage = MessageUtils.formatTypedMessage(rawData);
                         signable = new EthereumTypedMessage(writeBuffer.toByteArray(), signMessage, peerUrl.getText().toString(), id);
-                    }
-                    catch (JsonSyntaxException e)
-                    {
+                    } catch (JsonSyntaxException e) {
                         StructuredDataEncoder eip721Object = new StructuredDataEncoder(message.getData());
                         CharSequence signMessage = MessageUtils.formatEIP721Message(eip721Object);
                         signable = new EthereumTypedMessage(eip721Object.getStructuredData(), signMessage, peerUrl.getText().toString(), id);
                     }
-                }
-                catch (IOException e)
-                {
+                } catch (IOException e) {
                     showErrorDialog(getString(R.string.message_authentication_failed));
                     client.rejectRequest(id, getString(R.string.message_authentication_failed));
                     if (fromDappBrowser) switchToDappBrowser();
@@ -562,8 +503,7 @@ public class WalletConnectActivity extends BaseActivity
         signDialog.show();
     }
 
-    private void onEthSignTransaction(Long id, WCEthereumTransaction transaction)
-    {
+    private void onEthSignTransaction(Long id, WCEthereumTransaction transaction) {
         Web3Transaction w3Tx = new Web3Transaction(transaction, id);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle(R.string.dialog_title_sign_transaction)
@@ -580,8 +520,7 @@ public class WalletConnectActivity extends BaseActivity
         dialog.show();
     }
 
-    private void onFailure(Throwable throwable)
-    {
+    private void onFailure(Throwable throwable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle(R.string.title_dialog_error)
                 .setMessage(throwable.getMessage())
@@ -597,21 +536,17 @@ public class WalletConnectActivity extends BaseActivity
         dialog.show();
     }
 
-    private void doSignMessage()
-    {
-        dappFunction = new DAppFunction()
-        {
+    private void doSignMessage() {
+        dappFunction = new DAppFunction() {
             @Override
-            public void DAppError(Throwable error, Signable message)
-            {
+            public void DAppError(Throwable error, Signable message) {
                 showErrorDialog(error.getMessage());
                 signable = null;
                 if (fromDappBrowser) switchToDappBrowser();
             }
 
             @Override
-            public void DAppReturn(byte[] data, Signable message)
-            {
+            public void DAppReturn(byte[] data, Signable message) {
                 //store sign
                 viewModel.recordSign(signable, getSessionId());
                 signable = null;
@@ -621,19 +556,16 @@ public class WalletConnectActivity extends BaseActivity
             }
         };
 
-        signCallback = new SignAuthenticationCallback()
-        {
+        signCallback = new SignAuthenticationCallback() {
             @Override
-            public void gotAuthorisation(boolean gotAuth)
-            {
+            public void gotAuthorisation(boolean gotAuth) {
                 viewModel.signMessage(
                         signable,
                         dappFunction);
             }
 
             @Override
-            public void cancelAuthentication()
-            {
+            public void cancelAuthentication() {
                 showErrorDialogCancel(getString(R.string.title_dialog_error), getString(R.string.message_authentication_failed));
                 viewModel.rejectRequest(getSessionId(), lastId, getString(R.string.message_authentication_failed));
                 signable = null;
@@ -644,49 +576,39 @@ public class WalletConnectActivity extends BaseActivity
         viewModel.getAuthenticationForSignature(wallet, this, signCallback);
     }
 
-    private void onEthSendTransaction(Long id, WCEthereumTransaction transaction)
-    {
+    private void onEthSendTransaction(Long id, WCEthereumTransaction transaction) {
         lastId = id;
-        try
-        {
+        try {
             //minimum for transaction to be valid: recipient and value or payload
             if ((transaction.getTo().equals(Address.EMPTY) && transaction.getData() != null) // Constructor
                     || (!transaction.getTo().equals(Address.EMPTY) && (transaction.getData() != null || transaction.getValue() != null))) // Raw or Function TX
             {
                 signable = new EthereumMessage(transaction.toString(), peerUrl.getText().toString(), id);
                 viewModel.confirmTransaction(this, transaction, peerUrl.getText().toString(), MAINNET_ID, id);
-            }
-            else
-            {
+            } else {
                 //display transaction error
                 showErrorDialogCancel(getString(R.string.title_dialog_error), getString(R.string.message_authentication_failed));
                 viewModel.rejectRequest(getSessionId(), id, getString(R.string.message_authentication_failed));
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             showErrorDialogCancel(getString(R.string.title_dialog_error), getString(R.string.message_authentication_failed));
             viewModel.rejectRequest(getSessionId(), id, getString(R.string.message_authentication_failed));
         }
     }
 
-    private void signTransaction(Long id, WCEthereumTransaction transaction)
-    {
+    private void signTransaction(Long id, WCEthereumTransaction transaction) {
         lastId = id;
         final Web3Transaction w3Tx = new Web3Transaction(transaction, id);
         //simply sign the transaction and return
-        dappFunction = new DAppFunction()
-        {
+        dappFunction = new DAppFunction() {
             @Override
-            public void DAppError(Throwable error, Signable message)
-            {
+            public void DAppError(Throwable error, Signable message) {
                 showErrorDialog(error.getMessage());
                 if (fromDappBrowser) switchToDappBrowser();
             }
 
             @Override
-            public void DAppReturn(byte[] data, Signable message)
-            {
+            public void DAppReturn(byte[] data, Signable message) {
                 viewModel.recordSignTransaction(getApplicationContext(), w3Tx, MAINNET_ID, getSessionId());
                 updateSignCount();
                 viewModel.approveRequest(getSessionId(), message.getCallbackId(), Numeric.toHexString(data));
@@ -694,11 +616,9 @@ public class WalletConnectActivity extends BaseActivity
             }
         };
 
-        signCallback = new SignAuthenticationCallback()
-        {
+        signCallback = new SignAuthenticationCallback() {
             @Override
-            public void gotAuthorisation(boolean gotAuth)
-            {
+            public void gotAuthorisation(boolean gotAuth) {
                 //sign the transaction
                 signCallback = null;
                 viewModel.signTransaction(getBaseContext(), w3Tx, dappFunction, peerUrl.getText().toString(), MAINNET_ID);
@@ -706,8 +626,7 @@ public class WalletConnectActivity extends BaseActivity
             }
 
             @Override
-            public void cancelAuthentication()
-            {
+            public void cancelAuthentication() {
                 signCallback = null;
                 showErrorDialogCancel(getString(R.string.title_dialog_error), getString(R.string.message_authentication_failed));
                 viewModel.rejectRequest(getSessionId(), lastId, getString(R.string.message_authentication_failed));
@@ -718,35 +637,28 @@ public class WalletConnectActivity extends BaseActivity
         viewModel.getAuthenticationForSignature(wallet, this, signCallback);
     }
 
-    private void killSession()
-    {
+    private void killSession() {
         terminateSession = true;
         Log.d(TAG, ": Terminate Session: " + getSessionId());
-        if (client != null && session != null && client.isConnected())
-        {
+        if (client != null && session != null && client.isConnected()) {
             client.killSession();
-        }
-        else
-        {
+        } else {
             finish();
         }
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         super.onPause();
         stopMessageCheck();
     }
 
     @Override
-    public void onDestroy()
-    {
+    public void onDestroy() {
         super.onDestroy();
     }
 
-    private void showErrorDialog(String message)
-    {
+    private void showErrorDialog(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle(R.string.title_dialog_error)
                 .setMessage(message)
@@ -761,8 +673,7 @@ public class WalletConnectActivity extends BaseActivity
         dialog.show();
     }
 
-    private void showErrorDialogCancel(String title, String message)
-    {
+    private void showErrorDialogCancel(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle(title)
                 .setMessage(message)
@@ -779,26 +690,19 @@ public class WalletConnectActivity extends BaseActivity
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         //TODO: If from phone browser then we should return a code that tells main activity to finish
-        if (fromDappBrowser)
-        {
+        if (fromDappBrowser) {
             switchToDappBrowser();
-        }
-        else if (fromPhoneBrowser || qrCode == null)
-        {
+        } else if (fromPhoneBrowser || qrCode == null) {
             //hand back to phone browser
             finish();
-        }
-        else
-        {
+        } else {
             endSessionDialog();
         }
     }
 
-    private void endSessionDialog()
-    {
+    private void endSessionDialog() {
         runOnUiThread(() -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             AlertDialog dialog = builder.setTitle(R.string.dialog_title_disconnect_session)
@@ -813,8 +717,7 @@ public class WalletConnectActivity extends BaseActivity
         });
     }
 
-    private void showErrorDialogTerminate(String message)
-    {
+    private void showErrorDialogTerminate(String message) {
         runOnUiThread(() -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             AlertDialog dialog = builder.setTitle(R.string.title_dialog_error)
@@ -828,56 +731,41 @@ public class WalletConnectActivity extends BaseActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if (item.getItemId() == android.R.id.home)
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
         }
         return false;
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK)
-        {
-            if (requestCode == C.REQUEST_TRANSACTION_CALLBACK)
-            {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == C.REQUEST_TRANSACTION_CALLBACK) {
                 handleTransactionCallback(resultCode, data);
-            }
-            else if (signCallback != null) signCallback.gotAuthorisation(true);
-        }
-        else
-        {
+            } else if (signCallback != null) signCallback.gotAuthorisation(true);
+        } else {
             showErrorDialogCancel(peerName.getText().toString(), getString(R.string.message_transaction_not_sent));
-            if (requestCode == C.REQUEST_TRANSACTION_CALLBACK)
-            {
+            if (requestCode == C.REQUEST_TRANSACTION_CALLBACK) {
                 viewModel.rejectRequest(getSessionId(), lastId, getString(R.string.message_authentication_failed));
-            }
-            else
-            {
+            } else {
                 viewModel.rejectRequest(getSessionId(), lastId, getString(R.string.message_reject_request));
             }
         }
     }
 
     //return from the openConfirmation above
-    public void handleTransactionCallback(int resultCode, Intent data)
-    {
+    public void handleTransactionCallback(int resultCode, Intent data) {
         signable = null;
         if (data == null) return;
         final Web3Transaction web3Tx = data.getParcelableExtra(C.EXTRA_WEB3TRANSACTION);
-        if (resultCode == RESULT_OK && web3Tx != null)
-        {
+        if (resultCode == RESULT_OK && web3Tx != null) {
             String hashData = data.getStringExtra(C.EXTRA_TRANSACTION_DATA);
             viewModel.recordSignTransaction(getApplicationContext(), web3Tx, MAINNET_ID, getSessionId());
             viewModel.approveRequest(getSessionId(), lastId, hashData);
-        }
-        else if (web3Tx != null)
-        {
+        } else if (web3Tx != null) {
             showErrorDialogCancel(getString(R.string.title_wallet_connect), getString(R.string.message_transaction_not_sent));
             viewModel.rejectRequest(getSessionId(), lastId, getString(R.string.message_reject_request));
         }
@@ -885,8 +773,7 @@ public class WalletConnectActivity extends BaseActivity
         if (fromDappBrowser) switchToDappBrowser();
     }
 
-    private void switchToDappBrowser()
-    {
+    private void switchToDappBrowser() {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);

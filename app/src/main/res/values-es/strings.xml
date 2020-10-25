@@ -506,7 +506,7 @@
     <string name="provide_authentication">Proporcionar autenticación para crear la clave</string>
     <string name="import_error">Error de importación. Intenta importarlo de nuevo.</string>
     <string name="watch_exists">El monedero %1$s ya está completo - no es necesario observarlo</string>
-    <string name="welcome_to_alphawallet">Bienvenido a AlphaWallet</string>
+    <string name="welcome_to_alphawallet">Bienvenido a BitflexWallet</string>
     <string name="lock_seed_phrase">Bloquear frase semilla</string>
     <string name="no_key">No se ha encontrado ninguna clave</string>
     <string name="pending_transaction">Transacción pendiente...</string>
