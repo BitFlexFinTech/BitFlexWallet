@@ -3,7 +3,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/bitflex_secondary">
 
     <LinearLayout
         android:id="@+id/input_view_layout"
@@ -17,13 +17,13 @@
             android:id="@+id/input_watch_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
             android:textSize="18sp"
-            custom:minHeight="90"
-            custom:lines="2"
             custom:imeOptions="actionDone"
-            custom:label="@string/watch_wallet" />
+            custom:label="@string/watch_wallet"
+            custom:lines="2"
+            custom:minHeight="90" />
 
         <TextView
             android:id="@+id/text_watch_wallet"
@@ -31,7 +31,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_light"
             android:gravity="center"
-            android:text="@string/suggestion_address" />
+            android:text="@string/suggestion_address"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -42,9 +43,9 @@
         android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="25dp"
         android:background="@color/nasty_green"
         android:fontFamily="@font/font_semibold"
         android:text="@string/watch_wallet"
@@ -56,9 +57,9 @@
         android:id="@+id/bottom_marker_ww"
         android:layout_width="wrap_content"
         android:layout_height="1dp"
-        android:visibility="invisible"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="invisible">
     </LinearLayout>
 
 </RelativeLayout>
