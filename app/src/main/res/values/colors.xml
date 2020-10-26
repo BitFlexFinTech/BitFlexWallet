@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0F0F10</color>
+    <color name="colorPrimary">#7fbd24</color>
     <color name="colorPrimaryDark">#707070</color>
     <color name="colorAccent">#54C1E3</color>
     <color name="colorPrimaryLight">#AA54C1E3</color>
     <color name="colorTheme">#FFFFFF</color>
     <color name="colorHighlight">@color/azure</color>
 
+    <color name="bitflex_secondary">#0f0f10</color>
+    <color name="bitflex_third">#1B1B1B</color>
     <color name="secondary_text">#40000000</color>
-    <color name="toolbar_text_color">@color/azure</color>
+    <color name="toolbar_text_color">@color/white</color>
     <color name="bottom_dialog_title">#89000000</color>
     <color name="bottom_dialog_item">#dd000000</color>
     <color name="semitransparentWhite">#AAFFFFFF</color>
@@ -26,6 +28,7 @@
     <color name="button_disabled_colour">#b4cd99</color>
     <color name="semi_dark_grey">#707070</color>
     <color name="text_black">#2f2f2f</color>
+    <color name="text_white">#DDDDDD</color>
     <color name="text_dark_gray">#4a4a4a</color>
     <color name="text_light_gray">#686767</color>
     <color name="light_gray">#9b9b9b</color>

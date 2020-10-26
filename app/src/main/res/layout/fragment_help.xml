@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/bitflex_third">
 
     <include layout="@layout/layout_simple_toolbar" />
 
@@ -10,27 +10,27 @@
         android:id="@+id/list_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/layout_contact"
         android:layout_below="@id/toolbar_title"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="?actionBarSize"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp"
         android:paddingLeft="10dp"
-        android:layout_above="@id/layout_contact"
-        android:layout_alignParentTop="true"
         android:paddingRight="10dp" />
 
     <TextView
-        android:onClick="onClick"
         android:id="@+id/lambda_call"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?actionBarSize"
         android:layout_below="@id/list_help"
+        android:layout_marginBottom="?actionBarSize"
+        android:onClick="onClick"
         android:padding="30dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:id="@+id/layout_contact"
+        android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
         android:background="@drawable/selector_yellow"
@@ -55,12 +55,12 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:layout_marginTop="?actionBarSize"
+        android:layout_above="@id/layout_contact"
         android:layout_below="@id/toolbar_title"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_above="@id/layout_contact">
+        android:layout_marginTop="?actionBarSize"
+        android:visibility="gone">
 
     </WebView>
 

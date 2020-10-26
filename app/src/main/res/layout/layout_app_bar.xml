@@ -30,7 +30,8 @@
             android:layout_gravity="center"
             android:fontFamily="@font/font_semibold"
             android:gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </android.support.v7.widget.Toolbar>
+
 </android.support.design.widget.AppBarLayout>

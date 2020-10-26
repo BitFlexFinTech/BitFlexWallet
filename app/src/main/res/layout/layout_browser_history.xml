@@ -10,12 +10,12 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="25dp"
             android:layout_marginTop="40dp"
-            android:src="@drawable/ic_logo" />
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/ic_bitflex" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,11 +37,11 @@
             android:visibility="gone" />
 
         <TextView
-            android:layout_marginTop="40dp"
             android:id="@+id/no_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/font_light"
             android:text="@string/your_browser_history_appears_here"
             android:textSize="18sp" />

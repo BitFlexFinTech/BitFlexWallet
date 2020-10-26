@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_regular"
             android:text="Setting Title"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
         <TextView
@@ -44,7 +44,7 @@
             android:lines="1"
             android:maxLines="1"
             android:text="Setting Subtitle"
-            android:textColor="@color/dove"
+            android:textColor="@color/white"
             android:textSize="12sp"
             android:visibility="gone" />
     </LinearLayout>
@@ -78,7 +78,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="0.5dp"
         android:layout_alignParentBottom="true"
         android:background="@color/mercury" />
 </RelativeLayout>

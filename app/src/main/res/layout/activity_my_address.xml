@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/bitflex_third"
     android:orientation="vertical">
 
     <include layout="@layout/layout_network_switch_toolbar" />
@@ -25,7 +25,7 @@
             android:gravity="center"
             android:paddingTop="@dimen/dp20"
             android:text="@string/scan_qr_label"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/sp17"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,8 +46,8 @@
             android:id="@+id/copy_address_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
             android:layout_marginBottom="@dimen/dp24"
+            android:animateLayoutChanges="true"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -71,10 +71,10 @@
                 android:layout_marginBottom="@dimen/dp24"
                 android:gravity="center"
                 android:visibility="gone"
-                app:gravity="center_vertical"
-                app:text="@string/ethereum"
                 app:bold="true"
+                app:gravity="center_vertical"
                 app:removePadding="true"
+                app:text="@string/ethereum"
                 app:textColor="@color/black" />
 
             <com.alphawallet.app.widget.CopyTextView
@@ -83,8 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                app:gravity="center"
                 app:bold="true"
+                app:gravity="center"
                 app:textColor="@color/black" />
 
         </LinearLayout>

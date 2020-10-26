@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/bitflex_third"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -23,7 +23,7 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/font_semibold"
             android:text="@string/title_dialog_add_account"
-            android:textColor="@color/text_black"
+            android:textColor="@color/white"
             android:textSize="17sp" />
 
     </RelativeLayout>
@@ -31,7 +31,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/mercury"/>
+        android:background="@color/mercury" />
 
     <TextView
         android:id="@+id/new_account_action"
@@ -43,13 +43,13 @@
         android:paddingStart="20dp"
         android:paddingEnd="15dp"
         android:text="@string/action_create_new_account"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/mercury"/>
+        android:background="@color/mercury" />
 
     <TextView
         android:id="@+id/import_account_action"
@@ -61,13 +61,13 @@
         android:paddingStart="20dp"
         android:paddingEnd="15dp"
         android:text="@string/title_import"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/mercury"/>
+        android:background="@color/mercury" />
 
     <TextView
         android:id="@+id/watch_account_action"
@@ -79,7 +79,7 @@
         android:paddingStart="20dp"
         android:paddingEnd="15dp"
         android:text="@string/action_watch_account"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp" />
 
 </LinearLayout>

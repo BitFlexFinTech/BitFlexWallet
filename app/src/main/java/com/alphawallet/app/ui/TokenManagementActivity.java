@@ -85,8 +85,14 @@ public class TokenManagementActivity extends BaseActivity implements TokenListAd
 
     private TextWatcher textWatcher = new TextWatcher() {
         private String searchString;
-        @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
-        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
 
         @Override
         public void afterTextChanged(final Editable s) {
@@ -95,12 +101,13 @@ public class TokenManagementActivity extends BaseActivity implements TokenListAd
             delayHandler.postDelayed(workRunnable, 500 /*delay*/);
         }
 
-        Runnable workRunnable = () -> { if (adapter != null) adapter.filter(searchString); };
+        Runnable workRunnable = () -> {
+            if (adapter != null) adapter.filter(searchString);
+        };
     };
 
     private void onTokens(TokenCardMeta[] tokenArray) {
-        if (tokenArray != null && tokenArray.length > 0)
-        {
+        if (tokenArray != null && tokenArray.length > 0) {
             adapter = new TokenListAdapter(this, viewModel.getAssetDefinitionService(), viewModel.getTokensService(), tokenArray, this);
             tokenList.setAdapter(adapter);
 
@@ -121,10 +128,8 @@ public class TokenManagementActivity extends BaseActivity implements TokenListAd
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if (item.getItemId() == R.id.action_add)
-        {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
             viewModel.showAddToken(this);
         }
         return super.onOptionsItemSelected(item);
@@ -139,44 +144,36 @@ public class TokenManagementActivity extends BaseActivity implements TokenListAd
         Reason behind is that when there is a custom token added with menu option,
         it should have fetch the tokens again.
          */
-        if (getIntent() != null)
-        {
+        if (getIntent() != null) {
             String walletAddr = getIntent().getStringExtra(C.EXTRA_ADDRESS);
             wallet = new Wallet(walletAddr);
             viewModel.fetchTokens(wallet);
-        }
-        else
-        {
+        } else {
             finish();
         }
     }
 
     @Override
     public void onBackPressed() {
-        if (search.getText().length() > 0)
-        {
+        if (search.getText().length() > 0) {
             search.setText("");
             return;
         }
-        if (isDataChanged)
-        {
+        if (isDataChanged) {
             new HomeRouter().open(this, true);
         }
         super.onBackPressed();
     }
 
-    private void startRealmListener(Wallet wallet)
-    {
-        if (realmId == null || !realmId.equals(wallet.address))
-        {
+    private void startRealmListener(Wallet wallet) {
+        if (realmId == null || !realmId.equals(wallet.address)) {
             realmId = wallet.address;
             realm = viewModel.getRealmInstance(wallet);
             setRealmListener();
         }
     }
 
-    private void setRealmListener()
-    {
+    private void setRealmListener() {
         realmUpdates = realm.where(RealmToken.class)
                 .like("address", ADDRESS_FORMAT)
                 .findAllAsync();
@@ -184,8 +181,7 @@ public class TokenManagementActivity extends BaseActivity implements TokenListAd
             if (realmTokens.size() == 0) return;
 
             //Insert when discover
-            for (RealmToken token : realmTokens)
-            {
+            for (RealmToken token : realmTokens) {
                 if (adapter.isTokenPresent(token.getTokenAddress())) continue;
 
                 String balance = TokensRealmSource.convertStringBalance(token.getBalance(), token.getContractType());

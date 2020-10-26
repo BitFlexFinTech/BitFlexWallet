@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@drawable/background_toolbar"
-    android:contentInsetEnd="0dp"
-    android:contentInsetLeft="0dp"
-    android:contentInsetRight="0dp"
     android:contentInsetStart="0dp"
+    android:contentInsetLeft="0dp"
+    android:contentInsetEnd="0dp"
+    android:contentInsetRight="0dp"
     android:theme="@style/AppTheme.Toolbar"
     app:contentInsetEnd="0dp"
     app:contentInsetLeft="0dp"
@@ -29,7 +29,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:singleLine="true"
-        android:textColor="@color/toolbar_text_color"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
 </android.support.v7.widget.Toolbar>

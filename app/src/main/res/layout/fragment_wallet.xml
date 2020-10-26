@@ -15,7 +15,7 @@
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="230dp"
             app:layout_scrollFlags="scroll|enterAlways"
             app:titleEnabled="false">
 
@@ -25,20 +25,22 @@
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
-            style="@style/WalletTabLayoutStyle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="top"
-            android:background="@drawable/background_tab_layout"
+            android:background="@drawable/background_tab_layout1"
+            android:padding="10dp"
             android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             app:layout_scrollFlags="enterAlways"
             app:tabGravity="center"
-            app:tabIndicatorColor="@color/colorHighlight"
+            app:tabIndicatorColor="@color/text_white"
             app:tabIndicatorFullWidth="true"
+            app:tabIndicatorHeight="3dp"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/colorHighlight"
+            app:tabSelectedTextColor="@color/text_white"
             app:tabTextAppearance="@style/WalletTabTextAppearance"
-            app:tabTextColor="@color/white" />
+            app:tabTextColor="@color/grey_8d" />
 
         <View
             android:layout_width="match_parent"
@@ -64,7 +66,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/bitflex_secondary" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

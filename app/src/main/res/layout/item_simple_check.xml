@@ -3,7 +3,7 @@
     android:id="@+id/layout_list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/bitflex_third"
     android:minHeight="60dp">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/font_regular"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp" />
 
     <ImageView
