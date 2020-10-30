@@ -159,7 +159,7 @@
 
         <activity
             android:name=".ui.SendActivity"
-            android:label="@string/title_activity_send"
+            android:label="x@string/title_activity_send"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
