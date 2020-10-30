@@ -8,10 +8,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/font_semibold"
         android:text="@string/amount"
+        android:textColor="@color/text_white"
         android:textSize="14sp" />
 
     <RelativeLayout
@@ -34,7 +35,7 @@
                 android:fontFamily="@font/font_semibold"
                 android:paddingStart="15dp"
                 android:text="@string/usd_label"
-                android:textColor="@color/text_dark_gray"
+                android:textColor="@color/text_white"
                 android:textSize="36sp"
                 android:visibility="gone" />
 
@@ -52,10 +53,10 @@
                 android:inputType="numberDecimal"
                 android:lines="1"
                 android:maxLines="1"
-                android:paddingEnd="15dp"
                 android:paddingStart="15dp"
-                android:textColor="@color/text_dark_gray"
-                android:textColorHint="@color/light_gray"
+                android:paddingEnd="15dp"
+                android:textColor="@color/text_white"
+                android:textColorHint="@color/text_white"
                 android:textSize="36sp" />
 
             <TextView
@@ -66,7 +67,7 @@
                 android:layout_toRightOf="@id/edit_amount"
                 android:fontFamily="@font/font_semibold"
                 android:paddingEnd="15dp"
-                android:textColor="@color/text_dark_gray"
+                android:textColor="@color/text_white"
                 android:textSize="36sp" />
 
         </RelativeLayout>
@@ -93,14 +94,14 @@
                 android:id="@+id/img_quantity_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:layout_centerHorizontal="true"
                 android:background="@color/transparent"
-                android:paddingBottom="10dp"
                 android:paddingLeft="@dimen/big_padding"
-                android:paddingRight="@dimen/big_padding"
                 android:paddingTop="10dp"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingBottom="10dp"
                 android:src="@drawable/ic_quantity_up"
                 android:visibility="gone" />
 
@@ -108,14 +109,14 @@
                 android:id="@+id/img_quantity_down"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:background="@color/transparent"
-                android:paddingBottom="10dp"
                 android:paddingLeft="@dimen/big_padding"
-                android:paddingRight="@dimen/big_padding"
                 android:paddingTop="10dp"
+                android:paddingRight="@dimen/big_padding"
+                android:paddingBottom="10dp"
                 android:src="@drawable/ic_quantity_down"
                 android:visibility="gone" />
         </RelativeLayout>
@@ -142,7 +143,7 @@
         android:fontFamily="@font/font_regular"
         android:paddingLeft="15dp"
         android:text="US$ 0.00"
-        android:textColor="@color/text_dark_gray"
+        android:textColor="@color/text_white"
         android:textSize="21sp" />
 
     <TextView
@@ -154,9 +155,9 @@
         android:fontFamily="@font/font_regular"
         android:paddingLeft="15dp"
         android:text=""
-        android:textColor="@color/text_dark_gray"
-        android:visibility="gone"
-        android:textSize="18sp" />
+        android:textColor="@color/text_white"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/layout_token_equivalent_value"
@@ -174,7 +175,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/font_regular"
             android:text="0.00"
-            android:textColor="@color/text_dark_gray"
+            android:textColor="@color/text_white"
             android:textSize="21sp" />
 
         <TextView
@@ -186,7 +187,7 @@
             android:fontFamily="@font/font_regular"
             android:paddingLeft="5dp"
             android:text="ETH"
-            android:textColor="@color/text_dark_gray"
+            android:textColor="@color/text_white"
             android:textSize="21sp" />
     </LinearLayout>
 </LinearLayout>

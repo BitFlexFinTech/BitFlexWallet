@@ -24,8 +24,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:paddingTop="20dp">
+                android:paddingTop="20dp"
+                android:paddingRight="10dp">
 
                 <TextView
                     android:id="@+id/title_confirm"
@@ -36,7 +36,7 @@
                     android:fontFamily="@font/font_light"
                     android:gravity="center"
                     android:text="@string/confirm_transfer_details"
-                    android:textColor="@color/text_black"
+                    android:textColor="@color/text_white"
                     android:textSize="25sp"
                     android:visibility="gone" />
 
@@ -48,27 +48,27 @@
                         android:id="@+id/image_triangle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_blue_triangle"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/dp16"
-                        android:layout_alignParentTop="true"
-                        android:visibility="gone"/>
+                        android:src="@drawable/ic_blue_triangle"
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/layout_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
                         android:layout_below="@+id/image_triangle"
                         android:layout_toStartOf="@id/text_chain_name"
+                        android:gravity="center_horizontal"
                         android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/text_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="30dp"
                             android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="30dp"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center"
                             android:text="@string/dummy_transaction_value"
@@ -79,16 +79,16 @@
                             android:id="@+id/text_info"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
+                            android:layout_marginStart="@dimen/dp8"
+                            android:layout_marginEnd="@dimen/dp8"
+                            android:background="@drawable/background_round_azure_16dp_filled"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center"
-                            android:paddingEnd="@dimen/half_large_margin"
+                            android:lineHeight="29sp"
                             android:paddingStart="@dimen/half_large_margin"
-                            android:layout_marginEnd="@dimen/dp8"
-                            android:layout_marginStart="@dimen/dp8"
-                            android:background="@drawable/background_round_azure_16dp_filled"
+                            android:paddingEnd="@dimen/half_large_margin"
                             android:text="@string/dummy_transaction_value"
                             android:textColor="@color/white"
-                            android:lineHeight="29sp"
                             android:textSize="@dimen/sp17"
                             android:visibility="gone" />
 
@@ -100,7 +100,7 @@
                             android:fontFamily="@font/font_regular"
                             android:gravity="center"
                             android:text="ETH"
-                            android:textColor="@color/text_black"
+                            android:textColor="@color/text_white"
                             android:textSize="24sp" />
                     </LinearLayout>
 
@@ -108,15 +108,15 @@
                         android:id="@+id/text_chain_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/background_status_pending"
                         android:fontFamily="@font/font_bold"
                         android:padding="2dp"
-                        android:textColor="@color/white"
                         android:text="@string/action_clear"
+                        android:textColor="@color/white"
                         android:textSize="12sp"
                         android:visibility="visible" />
 
@@ -135,7 +135,7 @@
                         android:layout_marginBottom="5dp"
                         android:fontFamily="@font/font_regular"
                         android:text="@string/label_from"
-                        android:textColor="@color/text_dark_gray"
+                        android:textColor="@color/text_white"
                         android:textSize="18sp" />
 
                     <TextView
@@ -145,15 +145,15 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/font_regular"
                         android:gravity="center"
-                        android:textColor="@color/text_dark_gray"
+                        android:textColor="@color/text_white"
                         android:textIsSelectable="true"
                         android:textSize="@dimen/sp14" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -164,7 +164,7 @@
                             android:layout_marginEnd="50dp"
                             android:fontFamily="@font/font_regular"
                             android:text="@string/label_to"
-                            android:textColor="@color/text_dark_gray"
+                            android:textColor="@color/text_white"
                             android:textSize="18sp" />
 
                         <Button
@@ -196,7 +196,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/font_regular"
                         android:gravity="center"
-                        android:textColor="@color/text_dark_gray"
+                        android:textColor="@color/text_white"
                         android:textIsSelectable="true"
                         android:textSize="@dimen/sp14" />
 
@@ -204,11 +204,11 @@
                         android:id="@+id/label_website"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/font_regular"
                         android:text="@string/requester_url"
-                        android:textColor="@color/text_dark_gray"
+                        android:textColor="@color/text_white"
                         android:textSize="18sp"
                         android:visibility="gone" />
 
@@ -219,7 +219,7 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/font_regular"
                         android:gravity="center"
-                        android:textColor="@color/text_dark_gray"
+                        android:textColor="@color/text_white"
                         android:textIsSelectable="true"
                         android:textSize="@dimen/sp14"
                         android:visibility="gone" />
@@ -228,8 +228,8 @@
                         android:id="@+id/label_contract"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/font_regular"
                         android:text="@string/label_contract"
                         android:textColor="@color/text_dark_gray"
@@ -264,11 +264,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="20dp"
+                                android:layout_marginBottom="5dp"
                                 android:fontFamily="@font/font_regular"
                                 android:text="@string/label_gas_price"
-                                android:textColor="@color/text_dark_gray"
+                                android:textColor="@color/text_white"
                                 android:textSize="18sp" />
 
                             <LinearLayout
@@ -284,14 +284,14 @@
                                     android:fontFamily="@font/font_bold"
                                     android:gravity="center"
                                     android:textColor="@color/azure"
-                                    tools:text="2.4"
-                                    android:textSize="@dimen/sp15" />
+                                    android:textSize="@dimen/sp15"
+                                    tools:text="2.4" />
 
                                 <TextView
                                     style="@style/TransactionDetailsStyle"
-                                    android:layout_marginStart="@dimen/dp5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp5"
                                     android:text="Gwei" />
 
                             </LinearLayout>
@@ -303,14 +303,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:visibility="gone"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:visibility="gone">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="20dp"
+                                android:layout_marginBottom="5dp"
                                 android:fontFamily="@font/font_regular"
                                 android:text="@string/label_old_gas_price"
                                 android:textColor="@color/text_dark_gray"
@@ -331,9 +331,9 @@
 
                                 <TextView
                                     style="@style/TransactionDetailsStyle"
-                                    android:layout_marginStart="@dimen/dp5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp5"
                                     android:text="Gwei" />
                             </LinearLayout>
 
@@ -344,24 +344,24 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:id="@+id/layout_gas_estimate"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="20dp"
+                                android:layout_marginBottom="5dp"
                                 android:fontFamily="@font/font_regular"
                                 android:text="@string/label_gas_estimate"
-                                android:textColor="@color/text_dark_gray"
+                                android:textColor="@color/text_white"
                                 android:textSize="18sp" />
 
                             <LinearLayout
@@ -376,9 +376,9 @@
                                     android:layout_marginBottom="10dp"
                                     android:fontFamily="@font/font_regular"
                                     android:gravity="center"
-                                    android:textColor="@color/text_black"
-                                    tools:text="23000"
-                                    android:textSize="@dimen/sp15" />
+                                    android:textColor="@color/text_white"
+                                    android:textSize="@dimen/sp15"
+                                    tools:text="23000" />
 
                                 <ProgressBar
                                     android:id="@+id/progress_gas_estimate"
@@ -395,30 +395,30 @@
                         <LinearLayout
                             android:id="@+id/layout_gas_limit"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="5dp"
                                 android:layout_marginTop="20dp"
+                                android:layout_marginBottom="5dp"
                                 android:fontFamily="@font/font_regular"
                                 android:text="@string/label_gas_limit"
-                                android:textColor="@color/text_dark_gray"
+                                android:textColor="@color/text_white"
                                 android:textSize="18sp" />
 
-                                <TextView
-                                    android:id="@+id/text_gas_limit"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="10dp"
-                                    android:fontFamily="@font/font_bold"
-                                    android:gravity="center"
-                                    android:textColor="@color/azure"
-                                    tools:text="23000"
-                                    android:textSize="@dimen/sp15" />
+                            <TextView
+                                android:id="@+id/text_gas_limit"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:fontFamily="@font/font_bold"
+                                android:gravity="center"
+                                android:textColor="@color/azure"
+                                android:textSize="@dimen/sp15"
+                                tools:text="23000" />
 
 
                         </LinearLayout>
@@ -429,11 +429,11 @@
                         android:id="@+id/text_network_fee_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginBottom="5dp"
                         android:fontFamily="@font/font_regular"
                         android:text="@string/label_estimated_network_fee"
-                        android:textColor="@color/text_dark_gray"
+                        android:textColor="@color/text_white"
                         android:textSize="18sp" />
 
                     <LinearLayout
@@ -448,7 +448,7 @@
                             android:layout_marginBottom="10dp"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center"
-                            android:textColor="@color/text_dark_gray"
+                            android:textColor="@color/text_white"
                             android:textIsSelectable="true"
                             android:textSize="14sp" />
 

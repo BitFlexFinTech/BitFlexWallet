@@ -10,21 +10,22 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/font_semibold"
-        android:text="@string/signer_address"
-        android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/font_semibold"
+            android:text="@string/signer_address"
+            android:textColor="@color/text_white"
+            android:textSize="14sp" />
 
-    <ProgressBar
-        android:id="@+id/ens_fetch_progres"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="4dp"
-        android:visibility="gone"
-        android:indeterminate="true"/>
+        <ProgressBar
+            android:id="@+id/ens_fetch_progres"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="4dp"
+            android:indeterminate="true"
+            android:visibility="gone" />
 
     </LinearLayout>
 
@@ -47,10 +48,10 @@
             android:inputType="text"
             android:lines="1"
             android:maxLines="1"
-            android:paddingEnd="60dp"
             android:paddingStart="15dp"
-            android:textColor="@color/text_dark_gray"
-            android:textColorHint="@color/light_gray"
+            android:paddingEnd="60dp"
+            android:textColor="@color/text_white"
+            android:textColorHint="@color/text_white"
             android:textSize="11sp" />
 
         <TextView
@@ -62,7 +63,7 @@
             android:layout_marginEnd="15dp"
             android:fontFamily="@font/font_bold"
             android:text="@string/paste"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/text_white"
             android:textSize="11sp" />
 
 
@@ -100,8 +101,8 @@
         android:id="@+id/layout_ens"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -141,10 +142,10 @@
                 android:gravity="center_vertical"
                 android:lines="1"
                 android:maxLines="1"
-                android:paddingBottom="8dp"
-                android:paddingEnd="15dp"
                 android:paddingStart="15dp"
                 android:paddingTop="8dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="8dp"
                 android:textColor="@color/text_dark_gray"
                 android:textSize="11sp" />
 

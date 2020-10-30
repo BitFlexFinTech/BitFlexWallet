@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
@@ -38,7 +37,6 @@ import com.alphawallet.app.repository.TokenRepository;
 import com.alphawallet.app.router.AddTokenRouter;
 import com.alphawallet.app.router.ImportTokenRouter;
 import com.alphawallet.app.router.MyAddressRouter;
-import com.alphawallet.app.service.AnalyticsService;
 import com.alphawallet.app.service.AnalyticsServiceType;
 import com.alphawallet.app.service.AssetDefinitionService;
 import com.alphawallet.app.service.TickerService;
@@ -46,13 +44,11 @@ import com.alphawallet.app.service.TransactionsService;
 import com.alphawallet.app.ui.HomeActivity;
 import com.alphawallet.app.ui.SendActivity;
 import com.alphawallet.app.util.AWEnsResolver;
-import com.alphawallet.app.util.LocaleUtils;
 import com.alphawallet.app.util.QRParser;
 import com.alphawallet.token.entity.MagicLinkData;
 import com.alphawallet.token.tools.ParseMagicLink;
 
 import java.io.File;
-import java.util.Locale;
 import java.util.UUID;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -62,8 +58,8 @@ import static org.web3j.crypto.WalletUtils.isValidAddress;
 
 public class HomeViewModel extends BaseViewModel {
     private final String TAG = "HVM";
-    public static final String ALPHAWALLET_DIR = "AlphaWallet";
-    public static final String ALPHAWALLET_FILE_URL = "https://1x.alphawallet.com/dl/latest.apk";
+    public static final String ALPHAWALLET_DIR = "BitflexWallet";
+    public static final String ALPHAWALLET_FILE_URL = "https://bitflex.app/";
 
     private final MutableLiveData<NetworkInfo> defaultNetwork = new MutableLiveData<>();
     private final MutableLiveData<Transaction[]> transactions = new MutableLiveData<>();
@@ -150,13 +146,11 @@ public class HomeViewModel extends BaseViewModel {
                 .subscribe(this::onDefaultWallet, this::onError);
     }
 
-    public void onClean()
-    {
+    public void onClean() {
 
     }
 
-    private void onDefaultWallet(final Wallet wallet)
-    {
+    private void onDefaultWallet(final Wallet wallet) {
         defaultWallet.setValue(wallet);
     }
 
@@ -201,8 +195,7 @@ public class HomeViewModel extends BaseViewModel {
         addTokenRouter.open(context, address);
     }
 
-    public void updateLocale(String newLocale, Context context)
-    {
+    public void updateLocale(String newLocale, Context context) {
         localeRepository.setLocale(context, newLocale);
         //restart activity
         Intent intent = new Intent(context, HomeActivity.class);
@@ -230,7 +223,7 @@ public class HomeViewModel extends BaseViewModel {
         String destination = Environment.getExternalStorageDirectory()
                 + File.separator + ALPHAWALLET_DIR;
 
-        File testFile = new File(destination, "AlphaWallet-" + version + ".apk");
+        File testFile = new File(destination, "BitflexWallet-" + version + ".apk");
         if (testFile.exists()) {
             testFile.delete();
         }
@@ -264,12 +257,9 @@ public class HomeViewModel extends BaseViewModel {
 
     private void onWallet(Wallet wallet) {
         transactionsService.changeWallet(wallet);
-        if (TextUtils.isEmpty(wallet.ENSname))
-        {
+        if (TextUtils.isEmpty(wallet.ENSname)) {
             walletName.postValue(wallet.name);
-        }
-        else
-        {
+        } else {
             walletName.postValue(wallet.ENSname);
         }
 
@@ -285,8 +275,7 @@ public class HomeViewModel extends BaseViewModel {
         return walletName;
     }
 
-    public void checkIsBackedUp(String walletAddress)
-    {
+    public void checkIsBackedUp(String walletAddress) {
         genericWalletInteract.getWalletNeedsBackup(walletAddress)
                 .subscribe(backUpMessage::postValue).isDisposed();
     }
@@ -299,36 +288,30 @@ public class HomeViewModel extends BaseViewModel {
         preferenceRepository.setFindWalletAddressDialogShown(isShown);
     }
 
-    public String getDefaultCurrency(){
+    public String getDefaultCurrency() {
         return currencyRepository.getDefaultCurrency();
     }
 
-    public void updateTickers()
-    {
+    public void updateTickers() {
         tickerService.updateTickers();
     }
 
-    private void onENSError(Throwable throwable)
-    {
+    private void onENSError(Throwable throwable) {
         if (BuildConfig.DEBUG) throwable.printStackTrace();
     }
 
-    public void setErrorCallback(FragmentMessenger callback)
-    {
+    public void setErrorCallback(FragmentMessenger callback) {
         assetDefinitionService.setErrorCallback(callback);
     }
 
-    public void handleQRCode(Activity activity, String qrCode)
-    {
-        try
-        {
+    public void handleQRCode(Activity activity, String qrCode) {
+        try {
             if (qrCode == null) return;
 
             QRParser parser = QRParser.getInstance(EthereumNetworkBase.extraChains());
             QRResult qrResult = parser.parse(qrCode);
 
-            switch (qrResult.type)
-            {
+            switch (qrResult.type) {
                 case ADDRESS:
                     showSend(activity, qrResult); //For now, direct an ETH address to send screen
                     //TODO: Issue #1504: bottom-screen popup to choose between: Add to Address book, Sent to Address, or Watch Wallet
@@ -344,7 +327,7 @@ public class HomeViewModel extends BaseViewModel {
                     //TODO: Code to generate the function signature will look like the code in generateTransactionFunction
                     break;
                 case URL:
-                    ((HomeActivity)activity).onBrowserWithURL(qrCode);
+                    ((HomeActivity) activity).onBrowserWithURL(qrCode);
                     break;
                 case MAGIC_LINK:
                     showImportLink(activity, qrCode);
@@ -353,20 +336,16 @@ public class HomeViewModel extends BaseViewModel {
                     qrCode = null;
                     break;
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             qrCode = null;
         }
 
-        if(qrCode == null)
-        {
+        if (qrCode == null) {
             Toast.makeText(context, R.string.toast_invalid_code, Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void showSend(Activity ctx, QRResult result)
-    {
+    public void showSend(Activity ctx, QRResult result) {
         Intent intent = new Intent(ctx, SendActivity.class);
         boolean sendingTokens = (result.getFunction() != null && result.getFunction().length() > 0);
         String address = defaultWallet.getValue().address;
@@ -377,14 +356,13 @@ public class HomeViewModel extends BaseViewModel {
         intent.putExtra(C.EXTRA_SYMBOL, ethereumNetworkRepository.getNetworkByChain(result.chainId).symbol);
         intent.putExtra(C.EXTRA_DECIMALS, decimals);
         intent.putExtra(C.Key.WALLET, defaultWallet.getValue());
-        intent.putExtra(C.EXTRA_TOKEN_ID, (Token)null);
+        intent.putExtra(C.EXTRA_TOKEN_ID, (Token) null);
         intent.putExtra(C.EXTRA_AMOUNT, result);
         intent.setFlags(Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         ctx.startActivity(intent);
     }
 
-    public void showMyAddress(Activity activity)
-    {
+    public void showMyAddress(Activity activity) {
         myAddressRouter.open(activity, defaultWallet.getValue());
     }
 
@@ -392,14 +370,12 @@ public class HomeViewModel extends BaseViewModel {
      * This method will uniquely identify the device by creating an ID and store in preference.
      * This will be changed if user reinstall application or clear the storage explicitly.
      **/
-    public void identify(Context ctx)
-    {
+    public void identify(Context ctx) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 
         String uuid = prefs.getString(C.PREF_UNIQUE_ID, "");
 
-        if (uuid.isEmpty())
-        {
+        if (uuid.isEmpty()) {
             uuid = UUID.randomUUID().toString();
         }
 

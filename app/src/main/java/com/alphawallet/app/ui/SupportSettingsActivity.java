@@ -84,9 +84,9 @@ public class SupportSettingsActivity extends BaseActivity {
         if (MediaLinks.AWALLET_TWITTER_URL != null) {
             supportSettingsLayout.addView(twitter);
         }
-        if (MediaLinks.AWALLET_REDDIT_URL != null) {
+       /* if (MediaLinks.AWALLET_REDDIT_URL != null) {
             supportSettingsLayout.addView(reddit);
-        }
+        }*/
         if (MediaLinks.AWALLET_FACEBOOK_URL != null) {
             supportSettingsLayout.addView(facebook);
         }
