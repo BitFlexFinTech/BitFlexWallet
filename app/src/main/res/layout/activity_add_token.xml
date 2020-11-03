@@ -11,8 +11,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?android:attr/actionBarSize"
         android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginBottom="?android:attr/actionBarSize"
         android:background="@drawable/background_card">
 
         <LinearLayout
@@ -28,12 +28,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:fontFamily="@font/font_light"
                 android:gravity="center"
                 android:text="@string/title_add_token"
-                android:textColor="@color/text_black"
+                android:textColor="@color/text_white"
                 android:textSize="25sp" />
 
             <com.alphawallet.app.widget.InputAddressView

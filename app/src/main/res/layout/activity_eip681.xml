@@ -93,7 +93,7 @@
             android:layout_below="@id/holding_view"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_logo" />
+            android:src="@drawable/ic_bitflex" />
 
         <TextView
             android:id="@+id/address"

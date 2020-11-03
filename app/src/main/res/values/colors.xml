@@ -9,6 +9,7 @@
 
     <color name="bitflex_secondary">#0f0f10</color>
     <color name="bitflex_third">#1B1B1B</color>
+    <color name="bitflex_four">#2B2A2A</color>
     <color name="secondary_text">#40000000</color>
     <color name="toolbar_text_color">@color/white</color>
     <color name="bottom_dialog_title">#89000000</color>
@@ -23,7 +24,7 @@
     <color name="holo_blue">#FF33b5e5</color>
     <color name="tealish">#239ec5</color>
     <color name="title_color">#333333</color>
-    <color name="button_colour">#69c800</color>
+    <color name="button_colour">#1B1B1B</color>
     <color name="button_pressed_colour">#b4cd99</color>
     <color name="button_disabled_colour">#b4cd99</color>
     <color name="semi_dark_grey">#707070</color>
@@ -33,8 +34,8 @@
     <color name="text_light_gray">#686767</color>
     <color name="light_gray">#9b9b9b</color>
     <color name="super_light_grey">#ececec</color>
-    <color name="button_green">#69c800</color>
-    <color name="button_disabled">#b4cd99</color>
+    <color name="button_green">#2B2A2A</color>
+    <color name="button_disabled">#454545</color>
     <color name="greyf6">#f6f6f6</color>
     <color name="greyaa">#2a2a2a</color>
     <color name="greye5">#e5e5e5</color>
@@ -104,7 +105,7 @@
     <color name="alabaster">#fbfbfb</color>
     <color name="white">#ffffff</color>
     <color name="solitude">#e6f3ff</color>
-    <color name="azure">#7fbd24</color>
+    <color name="azure">#1B1B1B</color>
     <color name="azure_hover">#1993fd</color>
     <color name="cerulean">#00bfff</color>
     <color name="green">#75b943</color>

@@ -64,7 +64,7 @@ public class AddEditDappActivity extends BaseActivity {
             Glide.with(this)
                     .load(favicon)
                     .apply(new RequestOptions().circleCrop())
-                    .apply(new RequestOptions().placeholder(R.drawable.ic_logo))
+                    .apply(new RequestOptions().placeholder(R.drawable.ic_bitflex))
                     .into(icon);
         }
 

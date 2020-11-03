@@ -36,7 +36,7 @@ import io.reactivex.Single;
 
 public abstract class EthereumNetworkBase implements EthereumNetworkRepositoryType {
 
-    private static final String DEFAULT_HOMEPAGE = "https://bitflexfintech.github.io/BitFlexTestToken/";
+    private static final String DEFAULT_HOMEPAGE = "https://shop.bitflex.app/";
     /* constructing URLs from BuildConfig. In the below area you will see hardcoded key like da3717...
        These hardcoded keys are fallbacks used by AlphaWallet forks.
 

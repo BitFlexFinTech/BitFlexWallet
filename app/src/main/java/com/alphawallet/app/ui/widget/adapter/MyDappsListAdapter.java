@@ -9,19 +9,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.alphawallet.app.util.DappBrowserUtils;
-import com.alphawallet.app.util.Utils;
-
-import java.net.URISyntaxException;
-import java.util.List;
-
 import com.alphawallet.app.R;
 import com.alphawallet.app.entity.DApp;
 import com.alphawallet.app.ui.widget.OnDappClickListener;
 import com.alphawallet.app.ui.widget.OnDappEditedListener;
 import com.alphawallet.app.ui.widget.OnDappRemovedListener;
+import com.alphawallet.app.util.DappBrowserUtils;
+import com.alphawallet.app.util.Utils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.util.List;
 
 public class MyDappsListAdapter extends RecyclerView.Adapter<MyDappsListAdapter.ViewHolder> {
     private List<DApp> data;
@@ -80,7 +78,7 @@ public class MyDappsListAdapter extends RecyclerView.Adapter<MyDappsListAdapter.
             Glide.with(viewHolder.icon.getContext())
                     .load(favicon)
                     .apply(new RequestOptions().circleCrop())
-                    .apply(new RequestOptions().placeholder(R.drawable.ic_logo))
+                    .apply(new RequestOptions().placeholder(R.drawable.ic_bitflex))
                     .into(viewHolder.icon);
 
             viewHolder.icon.setOnClickListener(v -> {

@@ -25,8 +25,7 @@ public class AWalletAlertDialog extends Dialog {
     public static final int NO_SCREENSHOT = R.drawable.ic_no_screenshot;
     public static final int WARNING = R.drawable.ic_warning;
 
-    public enum TEXT_STYLE
-    {
+    public enum TEXT_STYLE {
         CENTERED,
         LEFT
     }
@@ -63,11 +62,10 @@ public class AWalletAlertDialog extends Dialog {
         secondaryButton.setOnClickListener(v -> dismiss());
     }
 
-    public void makeWide()
-    {
+    public void makeWide() {
         float scale = context.getResources().getDisplayMetrics().density;
-        int dp15 = (int) (15*scale + 0.5f);
-        int dp10 = (int) (10*scale + 0.5f);
+        int dp15 = (int) (15 * scale + 0.5f);
+        int dp10 = (int) (10 * scale + 0.5f);
         dialogLayout.setPadding(dp15, dp15, dp15, dp15);
         ViewGroup.MarginLayoutParams marginLayout = (ViewGroup.MarginLayoutParams) dialogLayout.getLayoutParams();
         marginLayout.setMargins(dp10, dp10, dp10, dp10);
@@ -137,10 +135,8 @@ public class AWalletAlertDialog extends Dialog {
         viewContainer.addView(view);
     }
 
-    public void setTextStyle(TEXT_STYLE style)
-    {
-        switch (style)
-        {
+    public void setTextStyle(TEXT_STYLE style) {
+        switch (style) {
             case CENTERED:
                 messageText.setGravity(Gravity.CENTER_HORIZONTAL);
                 break;

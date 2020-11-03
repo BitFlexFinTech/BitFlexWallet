@@ -11,22 +11,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alphawallet.app.R;
+import com.alphawallet.app.entity.DApp;
+import com.alphawallet.app.ui.widget.OnDappClickListener;
+import com.alphawallet.app.ui.widget.OnHistoryItemRemovedListener;
+import com.alphawallet.app.util.DappBrowserUtils;
+import com.alphawallet.app.util.Utils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
-import com.alphawallet.app.util.DappBrowserUtils;
-import com.alphawallet.app.util.Utils;
-
-import java.net.URISyntaxException;
-import java.util.List;
-
-import com.alphawallet.app.R;
-import com.alphawallet.app.entity.DApp;
-import com.alphawallet.app.ui.widget.OnDappClickListener;
-import com.alphawallet.app.ui.widget.OnHistoryItemRemovedListener;
 import com.bumptech.glide.request.target.Target;
+
+import java.util.List;
 
 public class BrowserHistoryAdapter extends RecyclerView.Adapter<BrowserHistoryAdapter.ViewHolder> {
     private List<DApp> data;
@@ -81,7 +79,7 @@ public class BrowserHistoryAdapter extends RecyclerView.Adapter<BrowserHistoryAd
             Glide.with(viewHolder.icon.getContext())
                     .load(favicon)
                     .apply(new RequestOptions().circleCrop())
-                    .apply(new RequestOptions().placeholder(R.drawable.ic_logo))
+                    .apply(new RequestOptions().placeholder(R.drawable.ic_bitflex))
                     .listener(requestListener)
                     .into(viewHolder.icon);
 

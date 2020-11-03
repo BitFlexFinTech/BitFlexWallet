@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:layout_marginBottom="10dp"
+    android:background="@color/bitflex_third"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="20dp"
@@ -31,6 +32,7 @@
             android:fontFamily="@font/font_regular"
             android:lines="1"
             android:text="DApp"
+            android:textColor="@color/text_white"
             android:textSize="12sp" />
 
         <TextView
@@ -41,7 +43,7 @@
             android:fontFamily="@font/font_bold"
             android:lines="1"
             android:text="dapp.com"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/text_white"
             android:textSize="10sp" />
     </LinearLayout>
 
@@ -58,12 +60,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_bold"
-            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:text="@string/edit"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/text_white"
             android:textSize="11sp" />
 
         <TextView
@@ -71,10 +73,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_bold"
-            android:paddingBottom="10dp"
             android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
             android:text="@string/action_remove"
             android:textColor="@color/red"
             android:textSize="11sp" />

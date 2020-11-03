@@ -31,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/font_light"
             android:gravity="center"
-            android:textColor="@color/text_black"
+            android:textColor="@color/text_white"
             android:textSize="25sp"
             android:visibility="gone" />
 
@@ -44,7 +44,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/font_light"
             android:gravity="center"
-            android:textColor="@color/text_black"
+            android:textColor="@color/text_white"
             android:textSize="16sp"
             android:visibility="gone" />
 
@@ -80,7 +80,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/dialog_button1"
-            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/selector_settings_item_reverse"
             android:fontFamily="@font/font_regular"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
@@ -97,7 +98,8 @@
             android:layout_below="@id/dialog_main_text"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
-            android:indeterminateTint="@color/colorPrimaryDark"
+            android:indeterminateTint="@color/text_white"
             android:visibility="gone" />
+
     </RelativeLayout>
 </ScrollView>

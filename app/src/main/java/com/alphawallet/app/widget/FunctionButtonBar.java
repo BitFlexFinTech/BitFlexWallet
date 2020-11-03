@@ -124,8 +124,7 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         findViewById(R.id.layoutButtons).setVisibility(View.VISIBLE);
     }
 
-    public void setupSecondaryFunction(StandardFunctionInterface functionInterface, int functionNameResource)
-    {
+    public void setupSecondaryFunction(StandardFunctionInterface functionInterface, int functionNameResource) {
         callStandardFunctions = functionInterface;
         adapter = null;
         functions = null;
@@ -149,8 +148,9 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
 
     /**
      * Use only for TokenScript function list
+     *
      * @param functionInterface
-     * @param functionName function
+     * @param functionName      function
      */
     public void setupFunctionList(StandardFunctionInterface functionInterface, String functionName) {
         callStandardFunctions = functionInterface;
@@ -198,15 +198,14 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         }
     }
 
-    public void revealButtons()
-    {
+    public void revealButtons() {
         showButtons = true;
     }
 
     @Override
     public void onClick(View v) {
         if (v instanceof Button) { // Instance of 'primary' & 'secondary' buttons
-            Button button = (Button)v;
+            Button button = (Button) v;
             debounceButton(button);
             handleAction(new ItemClick(button.getText().toString(), v.getId()));
         } else if (v instanceof ImageButton) { // Instance of 'menu' button
@@ -223,10 +222,10 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
     }
 
     private void handleStandardFunctionClick(ItemClick action) {
-        switch (action.buttonId)
-        {
+        switch (action.buttonId) {
             case R.string.action_sell:      //ERC875 only
-                if (isSelectionValid(action.buttonId)) callStandardFunctions.sellTicketRouter(selection);
+                if (isSelectionValid(action.buttonId))
+                    callStandardFunctions.sellTicketRouter(selection);
                 break;
             case R.string.action_send:      //Eth + ERC20
                 callStandardFunctions.showSend();
@@ -235,10 +234,12 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
                 callStandardFunctions.showReceive();
                 break;
             case R.string.action_transfer:  //Any NFT
-                if (isSelectionValid(action.buttonId)) callStandardFunctions.showTransferToken(selection);
+                if (isSelectionValid(action.buttonId))
+                    callStandardFunctions.showTransferToken(selection);
                 break;
             case R.string.action_use:    //NFT with Redeem
-                if (isSelectionValid(action.buttonId)) callStandardFunctions.selectRedeemTokens(selection);
+                if (isSelectionValid(action.buttonId))
+                    callStandardFunctions.selectRedeemTokens(selection);
                 break;
             default:
                 callStandardFunctions.handleClick(action.buttonText, action.buttonId);
@@ -250,11 +251,9 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         if (functions != null && functions.containsKey(function.buttonText)) {
             TSAction action = functions.get(function.buttonText);
             //first check for availability
-            if (!TextUtils.isEmpty(action.exclude))
-            {
+            if (!TextUtils.isEmpty(action.exclude)) {
                 String denialMessage = assetService.checkFunctionDenied(token, function.buttonText, selection);
-                if (!TextUtils.isEmpty(denialMessage))
-                {
+                if (!TextUtils.isEmpty(denialMessage)) {
                     callStandardFunctions.handleFunctionDenied(denialMessage);
                     return;
                 }
@@ -276,8 +275,7 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         if (adapter != null) selected = adapter.getSelectedTokenIds(selection);
         if (token == null || token.checkSelectionValidity(selected)) {
             return true;
-        }
-        else {
+        } else {
             displayInvalidSelectionError();
             flashButton(findViewById(buttonId));
             return false;
@@ -286,9 +284,9 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
 
     private boolean hasCorrectTokens(TSAction action) {
         //get selected tokens
-        if (adapter == null)
-        {
-            if (action.function != null) return action.function.getTokenRequirement() <= 1; //can't use multi-token with no selection adapter.
+        if (adapter == null) {
+            if (action.function != null)
+                return action.function.getTokenRequirement() <= 1; //can't use multi-token with no selection adapter.
             else return true;
         }
         List<BigInteger> selected = adapter.getSelectedTokenIds(selection);
@@ -358,19 +356,14 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         showButtons();
     }
 
-    private void waitForMapBuild()
-    {
+    private void waitForMapBuild() {
         //do we need to wait for the service to finish?
-        if (!functionMapComplete.tryAcquire())
-        {
+        if (!functionMapComplete.tryAcquire()) {
             callStandardFunctions.showWaitSpinner(true);
-            try
-            {
+            try {
                 functionMapComplete.acquire();
                 functionMapComplete.release();
-            }
-            catch (InterruptedException e)
-            {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
                 functionMapComplete.release();
             }
@@ -423,8 +416,7 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         secondaryButton.setOnClickListener(listener);
     }
 
-    private void debounceButton(final View v)
-    {
+    private void debounceButton(final View v) {
         if (v == null) return;
 
         v.setEnabled(false);
@@ -438,13 +430,11 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
      *
      * @param button
      */
-    private void flashButton(final Button button)
-    {
+    private void flashButton(final Button button) {
         if (button == null) return;
         button.setBackgroundResource(R.drawable.button_round_error);
         handler.postDelayed(() -> {
-            switch (button.getId())
-            {
+            switch (button.getId()) {
                 case R.id.primary_button:
                     button.setBackgroundResource(R.drawable.selector_round_button);
                     break;
@@ -490,29 +480,28 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
         addFunction(new ItemClick(context.getString(resourceId), resourceId));
     }
 
-    public void setWalletType(WalletType type)
-    {
+    public void setWalletType(WalletType type) {
         walletType = type;
     }
 
-    private static class FunctionItemAdapter extends ArrayAdapter<ItemClick>
-    {
+    private static class FunctionItemAdapter extends ArrayAdapter<ItemClick> {
         public FunctionItemAdapter(Context context, int resource, List<ItemClick> objects) {
             super(context, resource, 0, objects);
         }
 
-        @SuppressLint("ViewHolder") @NotNull @Override
+        @SuppressLint("ViewHolder")
+        @NotNull
+        @Override
         public View getView(int position, View convertView, @NotNull ViewGroup parent) {
             ItemClick item = getItem(position);
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_action, parent, false);
-            ((TextView)convertView.findViewById(android.R.id.text1)).setText(item.buttonText);
+            ((TextView) convertView.findViewById(android.R.id.text1)).setText(item.buttonText);
             return convertView;
         }
     }
 
-    private void populateButtons(Token token, BigInteger tokenId)
-    {
+    private void populateButtons(Token token, BigInteger tokenId) {
         if (token == null) return;
 
         resetButtonCount();
@@ -523,47 +512,38 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
 
         TokenDefinition td = assetService.getAssetDefinition(token.tokenInfo.chainId, token.getAddress());
 
-        if (td != null && tokenId != null)
-        {
-            for (String actionName : functions.keySet())
-            {
-                if (token.isFunctionAvailable(tokenId, actionName))
-                {
+        if (td != null && tokenId != null) {
+            for (String actionName : functions.keySet()) {
+                if (token.isFunctionAvailable(tokenId, actionName)) {
                     availableFunctions.put(actionName, functions.get(actionName));
                 }
             }
-        }
-        else
-        {
+        } else {
             availableFunctions = functions;
         }
 
-        if (availableFunctions != null && availableFunctions.size() > 0)
-        {
+        if (availableFunctions != null && availableFunctions.size() > 0) {
             SparseArray<String> actions = new SparseArray<>();
-            for (String actionName : availableFunctions.keySet()) actions.put(availableFunctions.get(actionName).order, actionName);
+            for (String actionName : availableFunctions.keySet())
+                actions.put(availableFunctions.get(actionName).order, actionName);
 
-            for (int i = 0; i < actions.size(); i++)
-            {
+            for (int i = 0; i < actions.size(); i++) {
                 addFunction(new ItemClick(actions.get(actions.keyAt(i)), 0));
             }
         }
 
-        if (token.isNonFungible()) addStandardTokenFunctions(token); //For non-fungible, include custom functions first - usually these are more frequently used
+        if (token.isNonFungible())
+            addStandardTokenFunctions(token); //For non-fungible, include custom functions first - usually these are more frequently used
 
         findViewById(R.id.layoutButtons).setVisibility(View.GONE);
 
         //TODO: Update Token name with result from selection
     }
 
-    private void getFunctionMap(AssetDefinitionService assetSvs)
-    {
-        try
-        {
+    private void getFunctionMap(AssetDefinitionService assetSvs) {
+        try {
             functionMapComplete.acquire();
-        }
-        catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -575,40 +555,33 @@ public class FunctionButtonBar extends LinearLayout implements AdapterView.OnIte
                 .isDisposed();
     }
 
-    private void onMapFetchError(Throwable throwable)
-    {
+    private void onMapFetchError(Throwable throwable) {
         findViewById(R.id.wait_buttons).setVisibility(View.GONE);
         functionMapComplete.release();
     }
 
-    private BigInteger getSelectedTokenId(List<BigInteger> tokenIds)
-    {
+    private BigInteger getSelectedTokenId(List<BigInteger> tokenIds) {
         return (tokenIds != null && tokenIds.size() > 0) ? tokenIds.get(0) : BigInteger.ZERO;
     }
 
-    private void setupTokenMap(Token token, Map<BigInteger, List<String>> availabilityMap)
-    {
+    private void setupTokenMap(Token token, Map<BigInteger, List<String>> availabilityMap) {
         token.setFunctionAvailability(availabilityMap);
         functionMapComplete.release();
         findViewById(R.id.wait_buttons).setVisibility(View.GONE);
 
-        if (showButtons)
-        {
+        if (showButtons) {
             BigInteger tokenId = getSelectedTokenId(selection);
             populateButtons(token, tokenId);
             showButtons();
         }
     }
 
-    private void showButtons()
-    {
-        if (BuildConfig.DEBUG || walletType != WalletType.WATCH)
-        {
+    private void showButtons() {
+        if (BuildConfig.DEBUG || walletType != WalletType.WATCH) {
             handler.post(() -> {
                 findViewById(R.id.layoutButtons).setVisibility(View.VISIBLE);
 
-                if (BuildConfig.DEBUG && walletType == WalletType.WATCH)
-                {
+                if (BuildConfig.DEBUG && walletType == WalletType.WATCH) {
                     findViewById(R.id.text_debug).setVisibility(View.VISIBLE);
                 }
             });
