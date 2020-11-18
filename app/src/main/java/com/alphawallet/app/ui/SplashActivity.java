@@ -19,6 +19,7 @@ import com.alphawallet.app.R;
 import com.alphawallet.app.entity.CreateWalletCallbackInterface;
 import com.alphawallet.app.entity.CryptoFunctions;
 import com.alphawallet.app.entity.CustomViewSettings;
+import com.alphawallet.app.entity.DApp;
 import com.alphawallet.app.entity.Operation;
 import com.alphawallet.app.entity.Wallet;
 import com.alphawallet.app.repository.EthereumNetworkRepository;
@@ -26,6 +27,7 @@ import com.alphawallet.app.router.HomeRouter;
 import com.alphawallet.app.router.ImportTokenRouter;
 import com.alphawallet.app.router.ImportWalletRouter;
 import com.alphawallet.app.service.KeyService;
+import com.alphawallet.app.util.DappBrowserUtils;
 import com.alphawallet.app.util.LocaleUtils;
 import com.alphawallet.app.viewmodel.SplashViewModel;
 import com.alphawallet.app.viewmodel.SplashViewModelFactory;
@@ -36,6 +38,8 @@ import com.alphawallet.token.entity.SalesOrderMalformed;
 import com.alphawallet.token.tools.ParseMagicLink;
 import com.crashlytics.android.Crashlytics;
 import com.crashlytics.android.core.CrashlyticsCore;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -54,6 +58,7 @@ public class SplashActivity extends BaseActivity implements CreateWalletCallback
     private String importPassData = null;
     private Handler handler = new Handler();
     private String errorMessage;
+
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -143,6 +148,7 @@ public class SplashActivity extends BaseActivity implements CreateWalletCallback
             findViewById(R.id.layout_new_wallet).setVisibility(View.VISIBLE);
             findViewById(R.id.button_create).setOnClickListener(v -> {
                 splashViewModel.createNewWallet(this, this);
+                add();
             });
             findViewById(R.id.button_watch).setOnClickListener(v -> {
                 new ImportWalletRouter().openWatchCreate(this, IMPORT_REQUEST_CODE);
@@ -251,5 +257,33 @@ public class SplashActivity extends BaseActivity implements CreateWalletCallback
     public void run() {
         new HomeRouter().openWithIntent(this, importPassData);
         finish();
+    }
+
+    // TODO TEMP METHOD : NEED TO DO THIS PROPER
+    // Add presaved links to brower
+    private void add() {
+        DApp dapp1 = new DApp("FlexMART®️ | Buy & Sell Online", "https://shop.bitflex.app");
+        DApp dapp2 = new DApp("AntiSOCIAL®️ | Social Media Management", "https://antisocial.bitflex.app");
+        DApp dapp3 = new DApp("Couch®️ | Movie & Tv Show Trailers", "https://couch.bitflex.app");
+        DApp dapp4 = new DApp("FlexCONNECT®️ | Video Conferencing", "https://connect.bitflex.app");
+        DApp dapp5 = new DApp("FlexTUNEZ®️ | Discover Music", "https://music.bitflex.app");
+        DApp dapp6 = new DApp("AdFLEX®️ | Advertise With Us", "https://ads.bitflex.app");
+        DApp dapp7 = new DApp("JetFLEX®️ | Flights & Holiday Bookings", "https://travel.bitflex.app");
+        DApp dapp8 = new DApp("FlexCOMMUNITY®️ | Join The Community", "https://community.bitflex.app");
+        DApp dapp9 = new DApp("FlexSUPPORT®️ | Knowledge Base", "https://support.bitflex.app ");
+        DApp dapp10 = new DApp("FlexCHANGE®️ | TRADE", "https://exchange.bitflex.app");
+
+        List<DApp> myDapps = DappBrowserUtils.getMyDapps(this);
+        myDapps.add(dapp10);
+        myDapps.add(dapp9);
+        myDapps.add(dapp8);
+        myDapps.add(dapp7);
+        myDapps.add(dapp6);
+        myDapps.add(dapp5);
+        myDapps.add(dapp4);
+        myDapps.add(dapp3);
+        myDapps.add(dapp2);
+        myDapps.add(dapp1);
+        DappBrowserUtils.saveToPrefs(this, myDapps);
     }
 }
